@@ -266,7 +266,7 @@
                 let splitIntervalElement = extensionsElement.getElementsByTagName(`osmand:split_interval`)[0];
                 if (!splitIntervalElement) {
                     splitIntervalElement = xmlDocument.createElementNS(osmAndNamespaceURI, "osmand:split_interval");
-                    splitIntervalElement.textContent = "false";
+                    splitIntervalElement.textContent = "0.0";
                     extensionsElement.appendChild(splitIntervalElement);
                 }
             });

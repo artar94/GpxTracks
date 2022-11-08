@@ -82,6 +82,22 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="osmAndColor" class="form-label">Цвет треков</label>
+                        <input id="osmAndColor" type="text" class="form-control" placeholder="По умолчанию" />
+                        <div class="form-text">
+                            Формат ARGB hex: #AARRGGBB где AA прозрачность, RR красный, GG зелёный, BB синий
+                        </div>
+                        <a
+                            class="form-text"
+                            href="https://hugabor.github.io/color-picker"
+                            target="_blank"
+                            referrerpolicy="no-referrer"
+                        >
+                            Калькулятор цветов
+                        </a>
+                    </div>
+
+                    <div class="mb-3">
                         <button type="button" class="btn btn-info" id="setupOsmAndBtn">
                             Добавить настройки OsmAnd
                         </button>
@@ -107,6 +123,7 @@
         const splitBtnElement = document.getElementById("splitBtn");
         const renameMaskElement = document.getElementById("renameMask");
         const renameBtnElement = document.getElementById("renameBtn");
+        const osmAndColorElement = document.getElementById("osmAndColor");
         const setupOsmAndBtnElement = document.getElementById("setupOsmAndBtn");
         const saveBtnElement = document.getElementById("saveBtn");
         const tracksElement = document.getElementById("tracks");
@@ -219,6 +236,7 @@
 
             const domParser = new window.DOMParser();
             const osmAndNamespaceURI = "https://osmand.net";
+            const color = osmAndColorElement.value || "#00000000";
             trackList.forEach(track => {
                 let xmlDocument = track.xmlDocument;
 
@@ -242,7 +260,7 @@
                 let colorElement = extensionsElement.getElementsByTagName(`osmand:color`)[0];
                 if (!colorElement) {
                     colorElement = xmlDocument.createElementNS(osmAndNamespaceURI, "osmand:color");
-                    colorElement.textContent = "#00000000";
+                    colorElement.textContent = color;
                     extensionsElement.appendChild(colorElement);
                 }
 
